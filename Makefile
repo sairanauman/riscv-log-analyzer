@@ -1,6 +1,3 @@
-	@echo "Testing analyzer help..."
-	@./scripts/analyze.sh --help > /dev/null
-	@echo "Analyzer help test passed."# ============================================================
 # RISC-V Log Analyzer Makefile
 # ============================================================
 
