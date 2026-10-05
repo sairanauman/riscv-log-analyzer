@@ -1,4 +1,4 @@
-# RISC-V Simulation Log Analyzer
+# RISC-V Simulation Log Analyzer - MEDS Module 1
 
 ## Description
 
