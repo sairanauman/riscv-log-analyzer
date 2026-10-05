@@ -1,5 +1,4 @@
 # RISC-V Simulation Log Analyzer - MEDS Module 1
-
 ## Description
 
 RISC-V Log Analyzer is a shell-based tool for processing RISC-V simulation
