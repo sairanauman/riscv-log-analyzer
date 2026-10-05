@@ -82,7 +82,45 @@ generate_report() {
         echo "Failed: $failed"
         echo "Skipped: $skipped"
         echo "Pass rate: $pass_rate%"
+        # Calculate execution-time statistics
+        times=$(grep -oE '\([0-9]+(\.[0-9]+)?s\)' "$log_file" | \
+            sed 's/[()]//g; s/s//' || true)
 
+        if [ -n "$times" ]; then
+
+            min_time=$(echo "$times" | awk '
+                NR==1 { min=$1 }
+                $1 < min { min=$1 }
+                END { printf "%.2f", min }
+            ')
+
+            max_time=$(echo "$times" | awk '
+                NR==1 { max=$1 }
+                $1 > max { max=$1 }
+                END { printf "%.2f", max }
+            ')
+
+            avg_time=$(echo "$times" | awk '
+                { sum += $1; count++ }
+                END {
+                    if (count > 0)
+                        printf "%.2f", sum/count
+                    else
+                        print "0.00"
+                }
+            ')
+
+            echo "Min time: ${min_time}s"
+            echo "Max time: ${max_time}s"
+            echo "Avg time: ${avg_time}s"
+
+        else
+
+            echo "Min time: N/A"
+            echo "Max time: N/A"
+            echo "Avg time: N/A"
+
+        fi
 
         # Show verdict
         if [ "$failed" -eq 0 ]; then
