@@ -198,7 +198,6 @@ generate_text_report() {
 # -------------------------
 # Generate CSV report
 # -------------------------
-
 generate_csv_report() {
 
     echo "metric,value"
@@ -211,8 +210,18 @@ generate_csv_report() {
     echo "max_time,$MAX_TIME"
     echo "avg_time,$AVG_TIME"
 
-}
+    if [ "$FAILED" -gt 0 ]; then
+        while IFS= read -r TEST; do
+            echo "failed_test,$TEST"
+        done <<< "$FAILED_TESTS"
+    fi
 
+    if [ "$FAILED" -eq 0 ]; then
+        echo "verdict,PASS"
+    else
+        echo "verdict,FAIL"
+    fi
+}
 
 # ============================================================# Parse command-line arguments
 # ============================================================
