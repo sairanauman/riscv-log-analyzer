@@ -1,0 +1,27 @@
+# Generated output files
+output/*
+
+# Temporary test files
+/tmp/
+
+# Shell script temporary files
+*.tmp
+*.temp
+
+# Logs generated during development
+*.log~
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# VS Code
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
